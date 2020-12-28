@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find a Job</title>
+</head>
+<body>
+<h1> 歡迎來到"找職缺"網站 </h1>
+    <form method='post' action= "{{ url_for('submit') }}">
+         <br>
+                <p><label>請問您想求職的縣市區域?<span class = 'r'></span></label></p>
+                <p><select  style="font-size:16px;padding:15px"  name = "area"  >
+                     <option value = '台北市' vt = '0' data-i = '0'>台北市</option>
+                     <option value = '基隆市' vt = '1' data-i = '1'>基隆市</option>
+                     <option value = '新北市' vt = '2' data-i = '2'>新北市</option>
+                     <option value = '桃園市' vt = '3' data-i = '3'>桃園市</option>
+                     <option value = '新竹市' vt = '4' data-i = '4'>新竹市</option>
+                     <option value = '苗栗縣' vt = '5' data-i = '5'>苗栗縣</option>
+                     <option value = '台中市' vt = '6' data-i = '6'>台中市</option>
+                     <option value = '南投縣' vt = '7' data-i = '7'>南投縣</option>
+                     <option value = '彰化縣' vt = '8' data-i = '8'>彰化縣</option>
+                     <option value = '雲林縣' vt = '9' data-i = '9'>雲林縣</option>
+                     <option value = '嘉義縣' vt = '10' data-i = '10'>嘉義縣</option>
+                     <option value = '台南市' vt = '11' data-i = '11'>台南市</option>
+                     <option value = '高雄市' vt = '12' data-i = '12'>高雄市</option>
+                     <option value = '屏東縣' vt = '13' data-i = '13'>屏東縣</option>
+                     <option value = '宜蘭縣' vt = '14' data-i = '14'>宜蘭縣</option>
+                     <option value = '花蓮縣' vt = '15' data-i = '15'>花蓮縣</option>
+                     <option value = '台東縣' vt = '16' data-i = '16'>台東縣</option>
+                     <option value = '澎湖縣' vt = '17' data-i = '17'>澎湖縣</option>
+                     <option value = '連江縣' vt = '18' data-i = '18'>連江縣</option>
+                     <option value = '金門縣' vt = '19' data-i = '19'>金門縣</option>
+                   </select></p>
+                <p><label>請問您的工作年資為幾年?<span class = 'r'></span></label></p>
+                <p><select  style="font-size:16px;padding:15px"  name = "year"  >
+                     <option value = 0 vt = '0' data-i = '0'>不拘</option>
+                     <option value = 1 vt = '1' data-i = '1'>1年</option>
+                     <option value = 2 vt = '2' data-i = '2'>2年</option>
+                     <option value = 3 vt = '3' data-i = '3'>3年</option>
+                     <option value = 4 vt = '4' data-i = '4'>4年</option>
+                     <option value = 5 vt = '5' data-i = '5'>5年</option>
+                     <option value = 6 vt = '6' data-i = '6'>6年</option>
+                     <option value = 7 vt = '7' data-i = '7'>7年</option>
+                     <option value = 8 vt = '8' data-i = '8'>8年</option>
+                     <option value = 9 vt = '9' data-i = '9'>9年</option>
+                     <option value = 10 vt = '10' data-i = '10'>10年</option>
+                   </select></p>
+                <p><label>請問您的最高學歷為?<span class = 'r'></span></label></p>
+                <p><select  style="font-size:16px;padding:15px"  name = "edu"  >
+                     <option value = '高中以下' vt = '0' data-i = '0'>高中以下</option>
+                     <option value = '高中' vt = '1' data-i = '1'>高中</option>
+                     <option value = '大學' vt = '2' data-i = '2'>大學</option>
+                     <option value = '專科' vt = '3' data-i = '2'>專科</option>
+                     <option value = '碩士' vt = '4' data-i = '4'>碩士</option>
+                     <option value = '博士' vt = '5' data-i = '5'>博士</option>
+                   </select></p>
+               <p><label>請附上您的履歷:</label>
+               <p><textarea style="font-size:16px;padding:10px"  name="work"   placeholder="請詳述您的工作經歷或附上您的履歷" rows="15" cols="50" required></textarea></p>
+               <br>
+               <p><button type = 'submit'>確認送出</button></p>
+                <h2>您適合的職業類型為:</h2>
+                <h3 style ='font-size:30px'>{{content1}}</h3>
+                <h2>您適合的職缺有:</h2>
+                    <table style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+                        <thead>
+                          <th>編號:</th>
+                          <th>職位</th>
+                          <th>公司</th>
+                          <th>工作內容</th>
+                          <th>網站連結</th>
+                        </thead>
+                        <tbody>
+                            {% for i in L %}
+                               <tr>
+                                   <td>{{ i.Number }}</td>
+                                   <td>{{ i.Job_Name }}</td>
+                                   <td>{{ i.Company }}</td>
+                                   <td>{{ i.Job_Description }}</td>
+                                   <td><a href="{{ i.job_url}}" target="_blank" style="font-size:20px" class = 'html-ex bare'>{{ 'link' }}</a></td>
+                               </tr>
+                            {% endfor%}
+                        </tbody>
+                    </table>
+    </form>
+</body>
+</html>
